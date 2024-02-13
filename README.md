@@ -2,7 +2,6 @@
 SQL Project Portfolio - Indian Census
 
 select * from project.dbo.data1;
-
 select * from project.dbo.data2;
 
 -- number of rows into our dataset
@@ -33,23 +32,18 @@ group by state having round(avg(literacy),0)>90 order by avg_literacy_ratio desc
 
 -- top 3 state showing highest growth ratio
 
-
 select state,avg(growth)*100 avg_growth from project..data1 group by state order by avg_growth desc limit 3;
-
 
 --bottom 3 state showing lowest sex ratio
 
 select top 3 state,round(avg(sex_ratio),0) avg_sex_ratio from project..data1 group by state order by avg_sex_ratio asc;
-
 
 -- top and bottom 3 states in literacy state
 
 drop table if exists #topstates;
 create table #topstates
 ( state nvarchar(255),
-  topstate float
-
-  )
+  topstate float)
 
 insert into #topstates
 select state,round(avg(literacy),0) avg_literacy_ratio from project..data1 
@@ -60,9 +54,7 @@ select top 3 * from #topstates order by #topstates.topstate desc;
 drop table if exists #bottomstates;
 create table #bottomstates
 ( state nvarchar(255),
-  bottomstate float
-
-  )
+  bottomstate float)
 
 insert into #bottomstates
 select state,round(avg(literacy),0) avg_literacy_ratio from project..data1 
